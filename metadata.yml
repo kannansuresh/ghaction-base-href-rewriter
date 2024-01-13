@@ -17,3 +17,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.base_href }}
+    - ${{ inputs.html_path }}
+    - ${{ inputs.html_glob }}
+  entrypoint: 'python action.py'
