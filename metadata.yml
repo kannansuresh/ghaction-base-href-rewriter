@@ -1,0 +1,19 @@
+name: 'Base href rewriter'
+description: 'Updates the base href within HTML files'
+author: 'KannanSuresh'
+branding:
+  color: 'purple'
+  icon: 'at-sign'
+
+inputs:
+  base_href:
+    description: 'The new base href value'
+    required: true
+  html_path:
+    description: 'Path to the HTML file to rewrite (optional)'
+  html_glob:
+    description: 'Glob pattern to match multiple HTML files (optional)'
+    
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
