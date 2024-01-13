@@ -15,8 +15,8 @@ inputs:
     description: 'Glob pattern to match multiple HTML files (optional)'
     
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile
   args:
     - ${{ inputs.base_href }}
     - ${{ inputs.html_path }}
