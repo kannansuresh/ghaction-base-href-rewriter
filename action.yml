@@ -17,3 +17,7 @@ inputs:
 runs:
   using: docker
   image: Dockerfile
+  env:
+    INPUT_BASE_HREF: ${{ inputs.base_href }}
+    INPUT_HTML_PATH: ${{ inputs.html_path }}
+    INPUT_HTML_GLOB: ${{ inputs.html_glob }}
