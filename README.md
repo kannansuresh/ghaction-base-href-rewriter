@@ -18,23 +18,21 @@ Glob pattern to match multiple HTML files. Either `html_path` or `html_glob` mus
 
 ## Example Usage
 
+### Single HTML file
+
 ```yaml
-name: Rewrite Base Href
+uses: kannansuresh/ghaction-base-href-rewriter@latest
+with:
+  base_href: 'https://your-updated-url.com'
+  html_path: 'index.html'
+```
 
-on:
-  push:
-    branches:
-      - main
+### Multiple HTML files
 
-jobs:
-  rewrite-base-href:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+```yaml
+uses: kannansuresh/ghaction-base-href-rewriter@latest
+with:
+  base_href: 'https://your-updated-url.com'
+  html_glob: '**/*.html'
+```
 
-    - name: Rewrite Base Href
-      uses: kannansuresh/rewrite-base-href-action@latest
-      with:
-        base_href: 'https://your-updated-url.com'
-        html_glob: '**/*.html'
