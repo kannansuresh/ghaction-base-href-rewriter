@@ -21,7 +21,7 @@ Glob pattern to match multiple HTML files. Either `html_path` or `html_glob` mus
 ### Single HTML file
 
 ```yaml
-uses: kannansuresh/ghaction-base-href-rewriter@v1
+uses: kannansuresh/ghaction-base-href-rewriter@v1.0.0
 with:
   base_href: 'https://your-updated-url.com'
   html_path: 'index.html'
@@ -30,7 +30,7 @@ with:
 ### Multiple HTML files
 
 ```yaml
-uses: kannansuresh/ghaction-base-href-rewriter@v1
+uses: kannansuresh/ghaction-base-href-rewriter@v1.0.0
 with:
   base_href: 'https://your-updated-url.com'
   html_glob: '**/*.html'
