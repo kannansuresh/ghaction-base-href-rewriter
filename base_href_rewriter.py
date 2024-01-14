@@ -8,7 +8,7 @@ import sys
 def get_args():
     parser = argparse.ArgumentParser(
         description='Rewrite base href in HTML files')
-    parser.add_argument('--base_href', required=True,
+    parser.add_argument('--base_href',
                         help='The new base href value')
     parser.add_argument('--html_path', help='Path to the HTML file to rewrite')
     parser.add_argument(
