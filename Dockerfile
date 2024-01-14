@@ -1,4 +1,6 @@
 FROM python:3.12-slim
+
+COPY . /action
 WORKDIR /action
-COPY action.py ./
-ENTRYPOINT ["python", "action.py"]
+
+ENTRYPOINT ["python", "/action/rewrite_base_href.py"]

@@ -1,24 +1,27 @@
+import os
 import re
 import glob
 import argparse
 import sys
 
-parser = argparse.ArgumentParser(description='Rewrite base href in HTML files')
-parser.add_argument('--base_href', required=True,
-                    help='The new base href value')
-parser.add_argument('--html_path', help='Path to the HTML file to rewrite')
-parser.add_argument(
-    '--html_glob', help='Glob pattern to match multiple HTML files')
+def get_args():
+    parser = argparse.ArgumentParser(description='Rewrite base href in HTML files')
+    parser.add_argument('--base_href', required=True,
+                        help='The new base href value')
+    parser.add_argument('--html_path', help='Path to the HTML file to rewrite')
+    parser.add_argument(
+        '--html_glob', help='Glob pattern to match multiple HTML files')
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
+    base_href = os.getenv('INPUT_BASE_HREF', args.base_href)
+    html_path = os.getenv('INPUT_HTML_PATH', args.html_path)
+    html_glob = os.getenv('INPUT_HTML_GLOB', args.html_glob)
 
-async def run():
+    return base_href, html_path, html_glob
+
+async def run(base_href, html_path, html_glob):
     try:
-        base_href = args.base_href
-        html_path = args.html_path
-        html_glob = args.html_glob
-
         if not (html_path or html_glob):
             raise ValueError(
                 'At least one of --html_path or --html_glob must be set')
@@ -38,8 +41,7 @@ async def run():
 
 
 def rewrite_single_file(file_path, base_href):
-    print(f'Attempting to rewrite base href in {
-          file_path} to value {base_href}...')
+    print(f'Attempting to rewrite base href in {file_path} to value {base_href}...')
 
     with open(file_path, 'r', encoding='utf-8') as file:
         original_text = file.read()
@@ -53,12 +55,12 @@ def rewrite_single_file(file_path, base_href):
             file.write(updated_text)
         print('Done')
     else:
-        print(f'WARNING: no <base> tag with href attribute was found in {
-              file_path}', file=sys.stderr)
+        print(f'WARNING: no <base> tag with href attribute was found in {file_path}', file=sys.stderr)
 
 
 async def main():
-    await run()
+    base_href, html_path, html_glob = get_args()
+    await run(base_href, html_path, html_glob)
 
 if __name__ == '__main__':
     import asyncio

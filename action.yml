@@ -2,7 +2,7 @@ name: 'Base href rewriter'
 description: 'Updates the base href within HTML files'
 author: 'KannanSuresh'
 branding:
-  color: 'purple'
+  color: 'green'
   icon: 'at-sign'
 
 inputs:
@@ -17,8 +17,3 @@ inputs:
 runs:
   using: docker
   image: Dockerfile
-  args:
-    - ${{ inputs.base_href }}
-    - ${{ inputs.html_path }}
-    - ${{ inputs.html_glob }}
-  entrypoint: 'python action.py'
