@@ -60,8 +60,8 @@ def rewrite_single_file(file_path, base_href):
 
 async def main():
     base_href, html_path, html_glob = get_args()
-    await run(base_href, html_path, html_glob)
+    import asyncio
+    asyncio.run(main(base_href, html_path, html_glob))
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    main()
